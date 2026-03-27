@@ -11,3 +11,12 @@ module.exports = {
 		logs: false, // Shows info about daisyUI version and used config in the console when building your CSS
 	  }
 }
+/** @type {import('tailwindcss').Config} */
+export default {
+  // ... tu configuración de content, theme, etc.
+  plugins: [require("@tailwindcss/typography"), require("daisyui")],
+  daisyui: {
+    themes: true, // Esto carga todos los temas por defecto de DaisyUI incluyendo synthwave
+    darkTheme: "dark",
+  },
+}
