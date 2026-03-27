@@ -19,13 +19,14 @@ const {
 ---
 
 <!doctype html>
-<html lang="en" data-theme="synthwave"><head>
+<html lang="en" data-theme="synthwave"> <head>
     <BaseHead title={title} description={description} image={image} ogType={ogType} />
     {TRANSITION_API && <ViewTransitions />}
     
     <script is:inline>
+      // 2. Modificamos el script para que el "fallback" sea synthwave en lugar de light
       if (localStorage.getItem("theme") === null) {
-        document.documentElement.setAttribute("data-theme", "light");
+        document.documentElement.setAttribute("data-theme", "synthwave");
       } else {
         document.documentElement.setAttribute("data-theme", localStorage.getItem("theme"));
       }
