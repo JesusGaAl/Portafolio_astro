@@ -4,7 +4,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import SideBar from "../components/SideBar.astro";
 import { ViewTransitions } from "astro:transitions";
-import ThemeSelector from "../components/ThemeSelector.astro"; //Bara deplegable cambio de tema.
+import ThemeSelector from "../components/ThemeSelector.astro"; // Barra desplegable cambio de tema.
 
 import { SITE_TITLE, SITE_DESCRIPTION, TRANSITION_API } from "../config";
 
@@ -19,15 +19,27 @@ const {
 ---
 
 <!doctype html>
-<html lang="en" data-theme="lofi">
-  <head>
-    <BaseHead title={title} description={description} image={image} , ogType={ogType} />
+<html lang="en"> <head>
+    <BaseHead title={title} description={description} image={image} ogType={ogType} />
     {TRANSITION_API && <ViewTransitions />}
+    
+    <script is:inline>
+      if (localStorage.getItem("theme") === null) {
+        document.documentElement.setAttribute("data-theme", "light");
+      } else {
+        document.documentElement.setAttribute("data-theme", localStorage.getItem("theme"));
+      }
+    </script>
   </head>
   <body>
     <div class="bg-base-100 drawer lg:drawer-open">
       <input id="my-drawer" type="checkbox" class="drawer-toggle" />
       <div class="drawer-content bg-base-100">
+        
+        <div class="fixed top-2 right-2 z-50">
+          <ThemeSelector />
+        </div>
+
         <Header title={SITE_TITLE} />
         <div class="md:flex md:justify-center">
           <main class="p-6 pt-10 lg:max-w-[900px] max-w-[100vw]">
@@ -38,5 +50,17 @@ const {
       </div>
       {includeSidebar && <SideBar sideBarActiveItemID={sideBarActiveItemID} />}
     </div>
+
+    <script>
+      const themeInputs = document.querySelectorAll('.theme-controller');
+      themeInputs.forEach((input) => {
+        input.addEventListener('change', (e) => {
+          const target = e.target as HTMLInputElement;
+          const theme = target.value;
+          document.documentElement.setAttribute('data-theme', theme);
+          localStorage.setItem('theme', theme);
+        });
+      });
+    </script>
   </body>
 </html>
