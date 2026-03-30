@@ -17,6 +17,6 @@ export default {
   plugins: [require("@tailwindcss/typography"), require("daisyui")],
   daisyui: {
     themes: true, // Esto carga todos los temas por defecto de DaisyUI incluyendo synthwave
-    darkTheme: "dark",
+    darkTheme: "dark"
   },
 }
