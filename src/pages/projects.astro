@@ -1,8 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import HorizontalCard from "../components/HorizontalCard.astro";
-// 1. Aquí importamos el widget visual que creamos
-import PcelScraper from "../components/PcelScraper.astro";
 ---
 
 <BaseLayout title="Projects" sideBarActiveItemID="projects">
@@ -14,14 +12,10 @@ import PcelScraper from "../components/PcelScraper.astro";
     title="Brocoli Side"
     img="/brocoli_5.webp"
     desc="An automated web scraping architecture built with C# and .NET 8 to track real-time prices of Apple products, specifically the MacBook Air, across major electronics retail stores. The backend utilizes XPath for precise DOM data extraction, stores historical pricing in a PostgreSQL relational database, and is containerized via Docker for continuous deployment on Render."
-    url="#" 
+    url="/brocoli-side"
+    target="_blank"
     badge="BACKEND"
   />
-  
-  <div class="mt-6 mb-10">
-    <PcelScraper />
-  </div>
-
   <div class="divider my-0"></div>
   
   <HorizontalCard
